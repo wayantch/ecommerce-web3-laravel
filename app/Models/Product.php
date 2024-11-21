@@ -12,6 +12,7 @@ class Product extends Model
         'name',
         'price',
         'image',
+        'description',
     ];
 
     // Menyusun URL gambar yang benar
@@ -20,5 +21,10 @@ class Product extends Model
         return Attribute::make(
             get: fn($image) => asset('storage/images/' . $image), // URL harus dimulai dengan 'storage/' dan bukan 'public/storage/'
         );
+    }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
     }
 }
